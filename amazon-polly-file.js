@@ -1,10 +1,5 @@
 
 
-
-
-/////
-
-
 // Load the SDK
 const AWS = require('aws-sdk')
 const Fs = require('fs')
@@ -16,14 +11,16 @@ const Polly = new AWS.Polly({
     region: 'us-east-1'
 })
 
-let translateText = "I want to be a millionaire because I think that is the solution to all my problems but what I don't realize is that more money more problems"
+let translateText = `Hello Pierre, I hope everything has been going well. The api returns a mp3 
+                        file that would just need to get linked to the alexa audio. For some reason it wasn't
+                        working. Hopefully you hear back from Jaguar soon.`
 
-translate(translateText, {to: 'es'}).then(res => {
+translate(translateText, {to: 'fr'}).then(res => {
 
     let params = {
         'Text': res.text,
         'OutputFormat': 'mp3',
-        'VoiceId': 'Joey'
+        'VoiceId': 'Mathieu'
     }
 
     Polly.synthesizeSpeech(params, (err, data) => {
